@@ -37,7 +37,7 @@
         android:text="@string/easy" />
 
     <Button
-        android:id="@+id/button_middle"
+        android:id="@+id/button_normal"
         android:backgroundTint="@android:color/holo_orange_light"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
