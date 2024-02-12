@@ -17,4 +17,5 @@
     <string name="question">\?</string>
     <string name="game_over_happy_smile">game over happy smile</string>
     <string name="try_again">Попробовать снова</string>
+    <string name="progress">Правильных ответов: %s (минимум %s)</string>
 </resources>

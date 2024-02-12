@@ -48,6 +48,7 @@ class GameFragment : Fragment() {
     }
 
     private fun launchGameFinishedFragment(gameResult: GameResult){
+        requireActivity().supportFragmentManager.popBackStack()
         requireActivity().supportFragmentManager.beginTransaction()
             .replace(R.id.main_container, GameFinishedFragment.newInstance(gameResult))
             .addToBackStack(GameFinishedFragment.NAME)
@@ -55,14 +56,16 @@ class GameFragment : Fragment() {
     }
 
     private fun parseParam() {
-        level= requireArguments().getSerializable(LEVEL) as Level
+        requireArguments().getParcelable(LEVEL, Level::class.java)?.let{
+            level=it
+        }
     }
 
     companion object {
         fun newInstance(level:Level):GameFragment{
             return GameFragment().apply {
                 arguments=Bundle().apply {
-                    putSerializable(LEVEL, level)
+                    putParcelable(LEVEL, level)
                 }
             }
         }
