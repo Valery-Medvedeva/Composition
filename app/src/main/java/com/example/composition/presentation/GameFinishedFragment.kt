@@ -36,6 +36,35 @@ class GameFinishedFragment : Fragment() {
         binding.buttonTryAgain.setOnClickListener {
             retryGame()
         }
+        setTextToTextView()
+        setSmile()
+    }
+
+    private fun setTextToTextView() {
+        binding.tvRequiredAnswers.text = String.format(
+            getString(R.string.required_answers),
+            gameResult.gameSettings.minCountOfRightAnswers
+        )
+        binding.tvScoreAnswers.text = String.format(
+            getString(R.string.your_count),
+            gameResult.countOfRightAnswers
+        )
+        binding.tvRequiredPercentage.text = String.format(
+            getString(R.string.required_percent),
+            gameResult.gameSettings.minPercentOfRightAnswers
+        )
+        binding.tvScorePercentage.text = String.format(
+            getString(R.string.your_percent),
+            (gameResult.countOfRightAnswers/gameResult.countOfQuestions.toDouble()*100).toInt()
+        )
+    }
+
+    private fun setSmile(){
+        if (gameResult.winner) {
+            binding.imageHappy.setImageResource(R.drawable.smile_happy)
+        } else {
+            binding.imageHappy.setImageResource(R.drawable.smile_sad)
+        }
     }
 
     override fun onDestroyView() {

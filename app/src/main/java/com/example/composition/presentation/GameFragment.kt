@@ -22,10 +22,9 @@ class GameFragment : Fragment() {
     private val viewModel by lazy {
         ViewModelProvider(
             this,
-            ViewModelProvider.AndroidViewModelFactory.getInstance(requireActivity().application)
+            GameViewModelFactory(level, requireActivity().application)
         )[GameViewModel::class.java]
     }
-
     private val tvOptions by lazy {
         mutableListOf<TextView>().apply {
             add(binding.tvOption1)
@@ -58,7 +57,6 @@ class GameFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
         observeViewModel()
         setClickListeners()
-        viewModel.startGame(level)
     }
 
     private fun setClickListeners(){
@@ -70,9 +68,6 @@ class GameFragment : Fragment() {
     }
 
     private fun observeViewModel() {
-        viewModel.formattedTime.observe(viewLifecycleOwner) {
-            binding.tvTimer.text = it
-        }
         viewModel.question.observe(viewLifecycleOwner) {
             binding.tvSum.text = it.sum.toString()
             binding.tvLeftNumber.text = it.visibleNumber.toString()
@@ -81,9 +76,11 @@ class GameFragment : Fragment() {
                 tvOptions[i].text = it.options[i].toString()
             }
         }
+
         viewModel.percentOfRightAnswers.observe(viewLifecycleOwner) {
             binding.progressBar.setProgress(it, true)
         }
+
         viewModel.enoughCount.observe(viewLifecycleOwner) {
             val colorID = if (it) {
                 android.R.color.holo_green_light
@@ -93,6 +90,7 @@ class GameFragment : Fragment() {
             val color = ContextCompat.getColor(requireContext(), colorID)
             binding.tvRightAnswersProgress.setTextColor(color)
         }
+
         viewModel.enoughPercent.observe(viewLifecycleOwner) {
             val colorID = if (it) {
                 android.R.color.holo_green_light
@@ -100,9 +98,13 @@ class GameFragment : Fragment() {
                 android.R.color.holo_red_light
             }
             val color = ContextCompat.getColor(requireContext(), colorID)
-            binding.tvRightAnswersProgress.setTextColor(color)
-            binding.progressBar.progressTintList = ColorStateList.valueOf(color)
+            binding.progressBar.progressTintList=ColorStateList.valueOf(color)
         }
+
+        viewModel.formattedTime.observe(viewLifecycleOwner) {
+            binding.tvTimer.text = it
+        }
+
         viewModel.minPercent.observe(viewLifecycleOwner) {
             binding.progressBar.secondaryProgress = it
         }
@@ -110,6 +112,7 @@ class GameFragment : Fragment() {
         viewModel.gameResult.observe(viewLifecycleOwner) {
             launchGameFinishedFragment(it)
         }
+
         viewModel.progressAnswers.observe(viewLifecycleOwner){
             binding.tvRightAnswersProgress.text=it
         }

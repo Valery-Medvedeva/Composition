@@ -18,4 +18,10 @@
     <string name="game_over_happy_smile">game over happy smile</string>
     <string name="try_again">Попробовать снова</string>
     <string name="progress">Правильных ответов: %s (минимум %s)</string>
+    <string name="required_answers">Необходимое количество правильных ответов: %s</string>
+    <string name="your_count">Ваш счет: %s</string>
+    <string name="required_percent">Необходимый процент правильных ответов: %s</string>
+    <string name="your_percent">Процент правильных ответов: %s</string>
+
+
 </resources>

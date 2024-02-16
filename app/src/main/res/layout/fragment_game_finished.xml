@@ -28,7 +28,7 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_chainStyle="packed"
-        tools:text="Необходимое количество правильных ответов: %s" />
+        tools:text="@string/required_answers" />
 
     <TextView
         android:id="@+id/tv_score_answers"
@@ -40,7 +40,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/tv_required_answers"
-        tools:text="Ваш счет: %s" />
+        tools:text="@string/your_count" />
 
     <TextView
         android:id="@+id/tv_required_percentage"
@@ -52,7 +52,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/tv_score_answers"
-        tools:text="Необходимый процент правильных ответов: %s" />
+        tools:text="@string/required_percent" />
 
     <TextView
         android:id="@+id/tv_score_percentage"
@@ -64,7 +64,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/tv_required_percentage"
-        tools:text="Процент правильных ответов: %s" />
+        tools:text="@string/your_percent" />
 
     <Button
         android:id="@+id/button_try_again"
