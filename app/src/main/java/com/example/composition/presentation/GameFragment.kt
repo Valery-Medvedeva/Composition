@@ -10,6 +10,7 @@ import android.widget.TextView
 import androidx.core.content.ContextCompat
 import androidx.lifecycle.LifecycleOwner
 import androidx.lifecycle.ViewModelProvider
+import androidx.navigation.fragment.findNavController
 import com.example.composition.R
 import com.example.composition.databinding.FragmentGameBinding
 import com.example.composition.domain.entity.GameResult
@@ -18,11 +19,10 @@ import com.example.composition.domain.entity.Level
 
 class GameFragment : Fragment() {
 
-    private lateinit var level: Level
     private val viewModel by lazy {
         ViewModelProvider(
             this,
-            GameViewModelFactory(level, requireActivity().application)
+            GameViewModelFactory(GameFragmentArgs.fromBundle(requireArguments()).level, requireActivity().application)
         )[GameViewModel::class.java]
     }
     private val tvOptions by lazy {
@@ -40,11 +40,6 @@ class GameFragment : Fragment() {
     private val binding: FragmentGameBinding
         get() = _binding ?: throw RuntimeException("FragmentGameBinding==null")
 
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-        parseParam()
-    }
-
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -59,8 +54,8 @@ class GameFragment : Fragment() {
         setClickListeners()
     }
 
-    private fun setClickListeners(){
-        for (tvOption in tvOptions){
+    private fun setClickListeners() {
+        for (tvOption in tvOptions) {
             tvOption.setOnClickListener {
                 viewModel.chooseAnswer(tvOption.text.toString().toInt())
             }
@@ -98,7 +93,7 @@ class GameFragment : Fragment() {
                 android.R.color.holo_red_light
             }
             val color = ContextCompat.getColor(requireContext(), colorID)
-            binding.progressBar.progressTintList=ColorStateList.valueOf(color)
+            binding.progressBar.progressTintList = ColorStateList.valueOf(color)
         }
 
         viewModel.formattedTime.observe(viewLifecycleOwner) {
@@ -113,8 +108,8 @@ class GameFragment : Fragment() {
             launchGameFinishedFragment(it)
         }
 
-        viewModel.progressAnswers.observe(viewLifecycleOwner){
-            binding.tvRightAnswersProgress.text=it
+        viewModel.progressAnswers.observe(viewLifecycleOwner) {
+            binding.tvRightAnswersProgress.text = it
         }
     }
 
@@ -124,29 +119,8 @@ class GameFragment : Fragment() {
     }
 
     private fun launchGameFinishedFragment(gameResult: GameResult) {
-        requireActivity().supportFragmentManager.popBackStack()
-        requireActivity().supportFragmentManager.beginTransaction()
-            .replace(R.id.main_container, GameFinishedFragment.newInstance(gameResult))
-            .addToBackStack(GameFinishedFragment.NAME)
-            .commit()
-    }
-
-    private fun parseParam() {
-        requireArguments().getParcelable(LEVEL, Level::class.java)?.let {
-            level = it
-        }
-    }
-
-    companion object {
-        fun newInstance(level: Level): GameFragment {
-            return GameFragment().apply {
-                arguments = Bundle().apply {
-                    putParcelable(LEVEL, level)
-                }
-            }
-        }
-
-        private const val LEVEL = "level"
-        const val NAME = "GameFragment"
+        findNavController().navigate(
+            GameFragmentDirections.actionGameFragmentToGameFinishedFragment(gameResult)
+        )
     }
 }
