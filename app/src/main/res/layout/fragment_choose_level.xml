@@ -1,61 +1,64 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:orientation="vertical"
-    tools:context=".presentation.ChooseLevelFragment">
+<layout>
 
-    <TextView
-        android:id="@+id/tv_title"
+    <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:tools="http://schemas.android.com/tools"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_margin="16dp"
-        android:text="@string/choose_level"
-        android:textSize="24sp"
-        android:textStyle="bold" />
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        tools:context=".presentation.ChooseLevelFragment">
 
-    <Button
-        android:id="@+id/button_test"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="16dp"
-        android:layout_marginEnd="16dp"
-        android:layout_marginBottom="8dp"
-        android:textSize="16sp"
-        android:text="@string/test" />
+        <TextView
+            android:id="@+id/tv_title"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="16dp"
+            android:text="@string/choose_level"
+            android:textSize="24sp"
+            android:textStyle="bold" />
 
-    <Button
-        android:id="@+id/button_easy"
-        android:backgroundTint="@android:color/holo_green_light"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="16dp"
-        android:layout_marginEnd="16dp"
-        android:layout_marginBottom="8dp"
-        android:textSize="16sp"
-        android:text="@string/easy" />
+        <Button
+            android:id="@+id/button_test"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:layout_marginEnd="16dp"
+            android:layout_marginBottom="8dp"
+            android:text="@string/test"
+            android:textSize="16sp" />
 
-    <Button
-        android:id="@+id/button_normal"
-        android:backgroundTint="@android:color/holo_orange_light"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="16dp"
-        android:layout_marginEnd="16dp"
-        android:layout_marginBottom="8dp"
-        android:textSize="16sp"
-        android:text="@string/middle" />
+        <Button
+            android:id="@+id/button_easy"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:layout_marginEnd="16dp"
+            android:layout_marginBottom="8dp"
+            android:backgroundTint="@android:color/holo_green_light"
+            android:text="@string/easy"
+            android:textSize="16sp" />
 
-    <Button
-        android:id="@+id/button_hard"
-        android:backgroundTint="@android:color/holo_red_light"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="16dp"
-        android:layout_marginEnd="16dp"
-        android:layout_marginBottom="8dp"
-        android:textSize="16sp"
-        android:text="@string/hard" />
+        <Button
+            android:id="@+id/button_normal"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:layout_marginEnd="16dp"
+            android:layout_marginBottom="8dp"
+            android:backgroundTint="@android:color/holo_orange_light"
+            android:text="@string/middle"
+            android:textSize="16sp" />
 
-</LinearLayout>
+        <Button
+            android:id="@+id/button_hard"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:layout_marginEnd="16dp"
+            android:layout_marginBottom="8dp"
+            android:backgroundTint="@android:color/holo_red_light"
+            android:text="@string/hard"
+            android:textSize="16sp" />
+
+    </LinearLayout>
+</layout>
